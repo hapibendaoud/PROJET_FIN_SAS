@@ -133,3 +133,49 @@ function AjouterPlusieurs(){
             menu();
     }
 }
+
+
+
+function Afficher(){
+    if(!candidats){
+        console.log("The list is Empty");
+        return
+    }
+    console.log(`
+=========  Sprt by  ==========
+= 1 - By Numbre of Vote      =
+= 2 - By Unique politique    =
+==============================
+        `)
+    const choix = Number(prompt("Choose Sort way: "))
+    switch(choix){
+        case 1:
+            for(let i = 0 ; i < candidats.length ; i++ ){
+                for (let i = 0; i < candidats.length - 1; i++) {
+                    for (let j = 0; j < candidats.length - 1 - i; j++) {
+                        if (candidats[j].electeurs.length < candidats[j + 1].electeurs.length) {
+                            let x = candidats[j];
+                            candidats[j] = candidats[j + 1];
+                            candidats[j + 1] = x;
+                        }
+                    }
+                }
+                console.log(`${i+1} - Candidat name: ${candidats[i].nom} ${candidats[i].prenom} CIN: ${candidats[i].cin} Age: ${candidats[i].age} Politique: ${candidats[i].partiPolitique} Vote: ${candidats[i].electeurs.length}`);
+            }
+            break
+        case 2:
+            const unique = prompt("Unique candidats: ");
+            for(let i = 0 ; i < candidats.length ; i++ ){
+                if(candidats[i].partiPolitique === unique){
+                    console.log(`${i+1} - Candidat name: ${candidats[i].prenom} ${candidats[i].nom} CIN: ${candidats[i].cin} Age: ${candidats[i].age} Politique: ${candidats[i].partiPolitique} Vote: ${candidats[i].electeurs.length}`);
+                }
+            }
+            break
+    }
+    const backToMenu = prompt("To back to the Menu click Enter:");
+    switch(backToMenu){
+        case '':
+            menu();
+    }
+    
+}
