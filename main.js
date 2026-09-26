@@ -307,3 +307,27 @@ function deleteFunction(){
             menu();
     }
 }
+
+
+function search(){
+    let index;
+    let nameOfCandidate = prompt("The name of Candidat: ").trim();
+    for(let i = 0; i < candidats.length; i++){
+        if(nameOfCandidate === candidats[i].nom){
+            exist = true;
+            ChoosenCandidat = candidats[i];
+            index = i;
+            break
+        }        
+    }
+    if(exist){
+        console.log(`${index} - Candidat name: ${ChoosenCandidat.prenom} ${ChoosenCandidat.nom} CIN: ${ChoosenCandidat.cin} Age: ${ChoosenCandidat.age} Politique: ${ChoosenCandidat.partiPolitique} Vote: ${ChoosenCandidat.electeurs.length}`);
+    } else {
+        console.log("Not Exist!!!");
+    }
+    const choix = prompt("Click Enter:");
+        switch(choix){
+            case '':
+                menu();
+        }
+}
