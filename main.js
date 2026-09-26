@@ -109,3 +109,27 @@ function Ajouter(){
     }
 
 }
+
+
+
+function AjouterPlusieurs(){
+    let manyCandidat;
+    while(true){
+        manyCandidat = parseInt(prompt("How Many condidats: "));
+        if(isNaN(manyCandidat) || manyCandidat <= 0){
+            console.log("Enter Number!!");
+        } else {
+            break
+        }
+    }
+    for(let i = 0; i < manyCandidat; i++){
+        Ajouter();
+    }
+    // console.log(candidats);
+    console.log("== Ajouter succee ==")
+    const choix = prompt("To back to the Menu click Enter:");
+    switch(choix){
+        case '':
+            menu();
+    }
+}
