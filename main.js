@@ -230,3 +230,45 @@ function vote(){
     }
     
 }
+
+
+function update(){
+    let cinOfCandidate = prompt("CIN of the candidate that you wanna UPDATE: ").trim();
+    for(let i = 0; i < candidats.length; i++){
+        if(cinOfCandidate === candidats[i].cin){
+            exist = true;
+            ChoosenCandidat = candidats[i];
+            break
+        }        
+    }
+    if(exist){
+        console.log(`
+    =======================================
+    == 1 - Update politique of candidat   =
+    == 2 - Update Age of candidat         =
+    =======================================
+    `);
+        let choice = Number(prompt("Update: "));
+        switch(choice){
+            case 1:
+                console.log("===== update politique =====");
+                let newPolitique = prompt("Write new Politique Name: ");
+                ChoosenCandidat.partiPolitique = newPolitique;
+                console.log("Politique Updated Seccesfully.");
+                break
+            case 2:
+                console.log("===== update Age =====");
+                let newAge = prompt("Write new candidat Age: ");
+                ChoosenCandidat.age = newAge;
+                console.log("Age Updated Seccesfully.");
+                break
+        }
+    } else {
+        console.log("The candidat do not exist");
+    }
+    const choix = prompt("Click Enter:");
+        switch(choix){
+            case '':
+                menu();
+        }
+}
