@@ -179,3 +179,54 @@ function Afficher(){
     }
     
 }
+
+
+
+function vote(){
+    const voteCIN = prompt("Please write your CIN: ").trim();
+    for(let con of candidats){
+        for(let j = 0; j < con.electeurs.length; j++ ){
+            if(voteCIN === con.electeurs[j]){
+                console.log(`The CIN: ${con.cin} is already VOTE!! you can not change your vote!!.`);
+                const choix = prompt("Click Enter:");
+                switch(choix){
+                    case '':
+                        menu();
+                }
+            }
+        }
+    }
+    let cinOfCandidate = prompt("CIN of the candidate that you wanna VOTE for: ").trim();
+    let exist = false;
+    for(let i = 0; i < candidats.length; i++){
+        if(cinOfCandidate === candidats[i].cin){
+            exist = true;
+            ChoosenCandidat = candidats[i];
+            break
+        }        
+    }
+
+    if(exist){
+        console.log("exist");
+        let vote = prompt(`Are you sure you wanna vote for ${ChoosenCandidat.nom} (Y/N): `).toLowerCase();
+        if(vote === "y" || vote === "" ){
+            ChoosenCandidat.electeurs.push(voteCIN);
+            const choix = prompt("Click Enter:");
+            switch(choix){
+                case '':
+                    menu();
+            }
+        } else {
+            menu();
+            return
+        }
+    } else {
+        console.log("The candidat do not exist");
+        const choix = prompt("Click Enter:");
+        switch(choix){
+            case '':
+                menu();
+        }
+    }
+    
+}
