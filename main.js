@@ -71,3 +71,41 @@ function menu(){
     
 }
 menu();
+
+
+function Ajouter(){
+    console.log("============== Ajouter un candidats =============")
+    const cin = prompt("Entrez le CIN: ");
+    for(let con of candidats){
+        if(cin === con.cin){
+            console.log(`The CIN: ${con.cin} is already EXIST!!`);
+            const choix = prompt("Click Enter:");
+            switch(choix){
+                case '':
+                    menu();
+            }
+        }
+    }
+    const nom = prompt("Entrez le Nom: ");
+    const prenom = prompt("Entrez le Prenom: ");
+    const partiPolitique = prompt("Entrez le Parti Politique (ou Indépendant): ");
+    const age = Number(prompt("Entrez l'âge: "));
+
+    const candidat = {
+        cin: cin,
+        nom: nom,
+        prenom: prenom,
+        partiPolitique: partiPolitique || "Indépendant",
+        age: age,
+        electeurs: []
+    };
+
+    candidats.push(candidat);
+    // console.log(candidats)
+    const choix = prompt("To back to the Menu click Enter:");
+    switch(choix){
+        case '':
+            menu();
+    }
+
+}
