@@ -272,3 +272,38 @@ function update(){
                 menu();
         }
 }
+
+
+
+function deleteFunction(){
+    let indexOfCandidat;
+    let cinOfCandidate = prompt("CIN of the candidate that you wanna DELETE: ").trim();
+    for(let i = 0; i < candidats.length; i++){
+        if(cinOfCandidate === candidats[i].cin){
+            exist = true;
+            indexOfCandidat = i ;
+            break
+        }        
+    }
+    if(exist){
+        let choice = prompt("Are you sure you wanna DELETE this candidat: ").toLowerCase();
+        switch(choice){
+            case "y":
+                candidats.splice(indexOfCandidat, 1);
+                console.log("DELETED Seccesfully.");
+                break
+            case "n":
+                console.log();
+                break
+            default:
+                menu();
+        }
+    } else {
+        console.log("The candidat do not exist!!.");
+    }
+    const choix = prompt("Click Enter:");
+    switch(choix){
+        case '':
+            menu();
+    }
+}
