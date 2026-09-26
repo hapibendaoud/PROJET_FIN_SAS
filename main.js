@@ -331,3 +331,50 @@ function search(){
                 menu();
         }
 }
+
+
+
+function Statistiques(){
+//     console.log(`==================================
+// == 1 -  nombre total de candidats  ==
+// == 2 - nombre total de votes       ==
+// =====================================`)
+    
+    let top3 = [];
+    let numberOfCandidat = 0;
+    let numberOfVoter = 0;
+    for(let i = 0; i < candidats.length; i++){
+        numberOfCandidat++
+    }
+    for(let con of candidats){
+        numberOfVoter = numberOfVoter + con.electeurs.length;
+    }
+    for(let i = 0 ; i < 2 ; i++ ){
+        for (let i = 0; i < candidats.length - 1; i++) {
+            for (let j = 0; j < candidats.length - 1 - i; j++) {
+                if (candidats[j].electeurs.length < candidats[j + 1].electeurs.length) {
+                    let x = candidats[j];
+                    candidats[j] = candidats[j + 1];
+                    candidats[j + 1] = x;
+                }
+            }
+        }
+        top3.push(candidats[i]);
+        // console.log(`${i+1} - Candidat name: ${candidats[i].nom} ${candidats[i].prenom} CIN: ${candidats[i].cin} Age: ${candidats[i].age} Politique: ${candidats[i].partiPolitique} Vote: ${candidats[i].electeurs.length}`);
+    }
+
+    console.log(`
+===============  Statistiques  ================
+==  Number of too candidat is:  ${numberOfCandidat}            ==
+==  Number of the voter is:  ${numberOfVoter}              ==
+==  Top 3 Candidats by vote                  ==`);
+for(let i = 0; i < top3.length; i++){
+    console.log(`== ${i + 1} - Parti Politique ${top3[i].partiPolitique}, Vote: ${top3[i].electeurs.length}  ==`);
+}
+console.log("===============================================")
+    const choix = prompt("To go back Click Enter:");
+    switch(choix){
+        case '':
+            menu();
+    }
+}
