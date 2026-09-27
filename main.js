@@ -8,7 +8,7 @@ const candidats = [
         cin : "AB123456",
         nom : "Boushaba",
         prenom : "Soufiane",
-        partiPolitique : "Independant",
+        partiPolitique : "happy",
         age: 40,
         electeurs: ["ss","ss","ss","ss","ss"]
     },
@@ -22,6 +22,7 @@ const candidats = [
     }
 ];
 function menu(){
+    console.clear();
     console.log(`
 ===========================================
 ====         Menu Prancipale           ====
@@ -41,30 +42,43 @@ function menu(){
     const choice = Number(prompt("Choose From The Menu: "));
     switch(choice){
         case 1:
+            console.clear();
             Ajouter();
             break
         case 2:
+            console.clear();
             AjouterPlusieurs();
             break
         case 3:
+            console.clear();
             Afficher();
             break
         case 4:
+            console.clear();
             vote();
             break
         case 5:
+            console.clear();
             update();
             break
         case 6:
+            console.clear();
             deleteFunction();
             break
         case 7:
+            console.clear();
             search();
             break
         case 8:
+            console.clear();
             Statistiques();
             break
         case 0:
+            console.clear();
+            console.log("See You Soon Sir");
+            break
+        default:
+            console.clear();
             console.log("See You Soon Sir");
             break
     }
@@ -89,7 +103,16 @@ function Ajouter(){
     const nom = prompt("Entrez le Nom: ");
     const prenom = prompt("Entrez le Prenom: ");
     const partiPolitique = prompt("Entrez le Parti Politique (ou Indépendant): ");
-    const age = Number(prompt("Entrez l'âge: "));
+    let age;
+    while (true){
+        age = Number(prompt("Entrez l'âge: "));
+        if(!age){
+            console.log("Please write yoyr AGE!!.");
+        } else {
+            break
+        }
+
+    }
 
     const candidat = {
         cin: cin,
@@ -101,7 +124,7 @@ function Ajouter(){
     };
 
     candidats.push(candidat);
-    // console.log(candidats)
+    console.log("The candidat add seccesfully.")
     const choix = prompt("To back to the Menu click Enter:");
     switch(choix){
         case '':
@@ -109,8 +132,6 @@ function Ajouter(){
     }
 
 }
-
-
 
 function AjouterPlusieurs(){
     let manyCandidat;
@@ -133,8 +154,6 @@ function AjouterPlusieurs(){
             menu();
     }
 }
-
-
 
 function Afficher(){
     if(!candidats){
@@ -179,8 +198,6 @@ function Afficher(){
     }
     
 }
-
-
 
 function vote(){
     const voteCIN = prompt("Please write your CIN: ").trim();
@@ -231,7 +248,6 @@ function vote(){
     
 }
 
-
 function update(){
     let cinOfCandidate = prompt("CIN of the candidate that you wanna UPDATE: ").trim();
     for(let i = 0; i < candidats.length; i++){
@@ -262,6 +278,9 @@ function update(){
                 ChoosenCandidat.age = newAge;
                 console.log("Age Updated Seccesfully.");
                 break
+            default:
+                update();
+                break
         }
     } else {
         console.log("The candidat do not exist");
@@ -272,9 +291,6 @@ function update(){
                 menu();
         }
 }
-
-
-
 function deleteFunction(){
     let indexOfCandidat;
     let cinOfCandidate = prompt("CIN of the candidate that you wanna DELETE: ").trim();
@@ -308,7 +324,6 @@ function deleteFunction(){
     }
 }
 
-
 function search(){
     let index;
     let nameOfCandidate = prompt("The name of Candidat: ").trim();
@@ -331,8 +346,6 @@ function search(){
                 menu();
         }
 }
-
-
 
 function Statistiques(){
 //     console.log(`==================================
@@ -367,6 +380,7 @@ function Statistiques(){
 ===============  Statistiques  ================
 ==  Number of too candidat is:  ${numberOfCandidat}            ==
 ==  Number of the voter is:  ${numberOfVoter}              ==
+===============================================
 ==  Top 3 Candidats by vote                  ==`);
 for(let i = 0; i < top3.length; i++){
     console.log(`== ${i + 1} - Parti Politique ${top3[i].partiPolitique}, Vote: ${top3[i].electeurs.length}  ==`);
